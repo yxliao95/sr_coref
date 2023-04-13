@@ -1,0 +1,25 @@
+# If use a relative path, it will base on the path that we execute the python command.
+work_dir: ${machine.work_dir}
+src_dir: ${work_dir}/src
+
+output_dir: ${work_dir}/output
+resource_dir: ${work_dir}/resources
+
+base_output_dir: ${work_dir}/output
+mimic_cxr_output_dir: ${base_output_dir}/mimic_cxr
+i2b2_output_dir: ${base_output_dir}/i2b2
+radgraph_output_dir: ${base_output_dir}/radgraph
+
+log_dir: ${work_dir}/logs/${hydra.job.config_name}
+logging_level: INFO # DEBUG, INFO
+
+ignore_source_path: ${work_dir}/config/ignore/common_ignore
+
+fast_coref_dir: ${machine.fast_coref_dir}
+coref_scorer_dir: ${machine.fast_coref_dir}/coref_resources/reference-coreference-scorers # This is the scorer for CoNLL-2011/2012 shared tasks on coreference resolution
+mimic_cxr_dir: ${machine.mimic_cxr_dir}
+
+defaults:
+  - hydra/custom_logging
+  - machine: linux
+  - _self_

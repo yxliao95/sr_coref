@@ -1,0 +1,5 @@
+# The config is in the files under the data_preprocessing/ folder
+
+defaults:
+  - common
+  - data_preprocessing@_global_: mimic_cxr # The correct config file be chosen in the scripts. No need to modify here.
