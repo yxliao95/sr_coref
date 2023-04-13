@@ -80,6 +80,5 @@ If you are using VSCode, add the following configs to get build-in supports:
     "terminal.integrated.env.linux": {
         "PYTHONPATH": "${workspaceFolder}/src:/path_to/fast-coref/src"
     },
-    ...
 }
 ```
