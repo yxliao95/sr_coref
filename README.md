@@ -80,9 +80,6 @@ If you are using VSCode, add the following configs to get build-in supports:
     "terminal.integrated.env.linux": {
         "PYTHONPATH": "${workspaceFolder}/src:/path_to/fast-coref/src"
     },
-    // "python.linting.pylintEnabled": true,
-    // "python.linting.enabled": true,
-    // "python.linting.flake8Enabled": false,
-    // "terminal.integrated.scrollback": 99999,
+    ...
 }
 ```
