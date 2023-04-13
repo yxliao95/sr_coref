@@ -64,3 +64,25 @@ The column of CSV files might not follow the same order. When the reports are be
 ## Config
 
 Please read the [Hydra Docs](https://hydra.cc/docs/intro/) for more details.
+
+## Others
+
+If you are using VSCode, add the following configs to get build-in supports:
+
+.vscode/settings.json:
+
+```json
+{
+    "python.analysis.extraPaths": [
+        "/path_to/git_clone_repos/fast-coref/src",
+        "/path_to/str_rep_coref/src",
+    ],
+    "terminal.integrated.env.linux": {
+        "PYTHONPATH": "${workspaceFolder}/src:/path_to/fast-coref/src"
+    },
+    // "python.linting.pylintEnabled": true,
+    // "python.linting.enabled": true,
+    // "python.linting.flake8Enabled": false,
+    // "terminal.integrated.scrollback": 99999,
+}
+```
