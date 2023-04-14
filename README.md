@@ -36,6 +36,19 @@ Check the src/data_preprocessing/README.md file for more configuation details.
 
 ### Linguistic pre-processing
 
+#### Install spaCy 3.5
+
+Using the requirement.txt to install the spacy en_core_web_md model will cause error.
+
+"ERROR: Could not find a version that satisfies the requirement en-core-web-md==3.5.0 (from versions: none)
+ERROR: No matching distribution found for en-core-web-md==3.5.0"
+
+So we comment out the model from the txt file, and ask the user install it using the following commands:
+
+```bash
+python -m spacy download en_core_web_md
+```
+
 #### Install CoreNLP
 
 - Download CoreNLP from: <https://stanfordnlp.github.io/CoreNLP/>
