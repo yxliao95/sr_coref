@@ -11,7 +11,7 @@ defaults:
 # This is the alignment base. It means that any model/library/tool outputs are aligned to the spaCy outputs (tokens).
 spacy:
   output_dir: ${output.base_dir}/spacy
-  activate: false
+  activate: true
   multiprocess_workers: 15
 
 corenlp:
