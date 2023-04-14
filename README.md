@@ -1,4 +1,4 @@
-# Structure Reporting
+# Coreference Resolution
 
 ## Usage
 
