@@ -4,7 +4,7 @@
 
 ### Model
 
-Our coref model is based on [fast-coref](https://github.com/shtoshni/fast-coref) with minor modification, which is repo at 
+Our coref model is based on [fast-coref](https://github.com/shtoshni/fast-coref) with minor modification
 
 ### Python requirements
 
