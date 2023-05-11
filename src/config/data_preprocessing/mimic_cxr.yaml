@@ -1,4 +1,4 @@
-# The MIMIC-CXR root folder path
+# The MIMIC-CXR root folder path. Defined in machine/xxx.yaml
 data_dir: ${mimic_cxr_dir}
 
 # Modify the corresponding config

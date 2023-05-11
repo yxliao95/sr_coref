@@ -2,6 +2,22 @@
 
 Please register and download the 2011 - Coreference (Clinical) dataset from [here](https://portal.dbmi.hms.harvard.edu/projects/n2c2-nlp/).
 
+## Requirement
+
+Jupyter Notebook is required
+
+```
+pip install hydra-core --upgrade
+pip install pathspec
+pip install tqdm 
+pip install notebook
+pip install pandas
+pip install matplotlib
+pip install natsort
+pip3 install torch --index-url https://download.pytorch.org/whl/cu118
+pip install transformers
+```
+
 ## Usage
 
 ### Create BRAT data for annotation

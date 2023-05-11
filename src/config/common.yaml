@@ -21,5 +21,5 @@ mimic_cxr_dir: ${machine.mimic_cxr_dir}
 
 defaults:
   - hydra/custom_logging
-  - machine: linux
+  - machine: windows
   - _self_

@@ -11,6 +11,7 @@ Our coref model is based on [fast-coref](https://github.com/shtoshni/fast-coref)
 python >= 3.9
 
 ```bash
+conda create --name sr_coref python=3.9 -y
 pip install -r requirements.txt
 ```
 
@@ -20,7 +21,7 @@ If the scripts fail to import modules, please make sure the following paths are 
 
 ```bash
 export PYTHONPATH=/path_to/fast-coref/src
-export PYTHONPATH=/path_to/str_rep_coref/src:$PYTHONPATH
+export PYTHONPATH=/path_to/sr_coref/src:$PYTHONPATH
 ```
 
 ### Pre-process the MIMIC-CXR data
@@ -36,37 +37,9 @@ Check the src/data_preprocessing/README.md file for more configuation details.
 
 ### Linguistic pre-processing
 
-#### Install spaCy 3.5
-
-Using the requirement.txt to install the spacy en_core_web_md model will cause error.
-
-"ERROR: Could not find a version that satisfies the requirement en-core-web-md==3.5.0 (from versions: none)
-ERROR: No matching distribution found for en-core-web-md==3.5.0"
-
-So we comment out the model from the txt file, and ask the user install it using the following commands:
-
-```bash
-python -m spacy download en_core_web_md
-```
-
-#### Install CoreNLP
-
-- Download CoreNLP from: <https://stanfordnlp.github.io/CoreNLP/>
-- Install CoreNLP following the instruction: <https://stanfordnlp.github.io/CoreNLP/download.html#getting-a-copy>
-  - Install Java
-  - Setup CLASSPATH
-- Make sure you can start the CoreNLP server. But shutdown the server before running our script, as the script will start a new server automatically.
-
-#### Run script
-
-```bash
-cd ../str_rep_coref/src/nlp_ensemble
-python process_mimic_cxr.py
-```
+Check the src/nlp_ensemble/README.md file for details.
 
 ### Coreference Resolution
-
-Jupyter Notebook is required.
 
 Check the src/coreference_resolution/README.md file for details.
 
