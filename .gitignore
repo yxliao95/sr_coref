@@ -3,6 +3,8 @@
 /outputs
 tests/
 /resources/radgraph
+/resources/active_learning
+src/config/remote_server
 
 logs/
 cim-misspelling/

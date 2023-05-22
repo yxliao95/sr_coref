@@ -174,9 +174,6 @@ def copy_and_paste_conll(input_conll_file, output_conll_file):
 
 
 def aggregrate_conll(config, keep_0_coref_docs=False) -> defaultdict[str, int]:
-    """Args:
-    data_distribution: {'findings': {0: 141182, 1: 12772, 2: 1645, 3: 295, ...}, ...}
-    """
     log_out = {}
 
     split_cfg_list = [config.data_split.get(mode_name) for mode_name in config.data_split.activate]

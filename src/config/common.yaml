@@ -10,7 +10,7 @@ mimic_cxr_output_dir: ${base_output_dir}/mimic_cxr
 i2b2_output_dir: ${base_output_dir}/i2b2
 radgraph_output_dir: ${base_output_dir}/radgraph
 
-log_dir: ${work_dir}/logs/${hydra.job.config_name}
+log_dir: ${work_dir}/logs
 logging_level: INFO # DEBUG, INFO
 
 ignore_source_path: ${work_dir}/config/ignore/common_ignore

@@ -8,6 +8,7 @@ import os
 import shutil
 
 import hydra
+
 # pylint: disable=import-error
 from coref_utils import conll
 from data_processing.utils import (
@@ -69,7 +70,10 @@ def get_document(document_lines, tokenizer, segment_len):
             document_state.sentence_end[-1] = True
 
     split_into_segments(
-        document_state, segment_len, document_state.sentence_end, document_state.token_end,  # pylint: disable=no-member
+        document_state,
+        segment_len,
+        document_state.sentence_end,
+        document_state.token_end,  # pylint: disable=no-member
     )
     document = document_state.finalize()
     return document
@@ -106,10 +110,14 @@ def minimize_split(config, args):
     check_and_create_dirs(output_dir_conll)
 
     log_msg = []
-    for element in config.longformer.source:  # [{'train': 'train_dev_3k'}, {'dev': 'train_dev_3k'}, {'test': 'test_only'}]
+    for (
+        element
+    ) in config.longformer.source:  # [{'train': 'train_dev_3k'}, {'dev': 'train_dev_3k'}, {'test': 'test_only'}]
         for key, val in element.items():
             # Copy to conll dir
-            input_path = os.path.join(args.input_dir, config.data_split.get(val).dir_name, f"{key}{config.output.suffix}")
+            input_path = os.path.join(
+                args.input_dir, config.data_split.get(val).dir_name, f"{key}{config.output.suffix}"
+            )
             shutil.copyfile(input_path, os.path.join(output_dir_conll, f"{key}{config.output.suffix}"))
 
             # Generate to longformer dir

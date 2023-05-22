@@ -1,9 +1,10 @@
 run:
-  dir: ${log_dir}
+  dir: ${log_dir}/${hydra.job.config_name}
 verbose: false
 # output_subdir: null # To prevent saving the files into .hydra
 job:
   chdir: False
+  config_name: ""
 job_logging:
   version: 1
   formatters:

@@ -1,0 +1,67 @@
+defaults:
+  - common
+  - name_style/spacy_output
+  - name_style/fastcoref_joint_output
+  - name_style/mimic_cxr_gt
+  - remote_server/brat
+  - _self_
+
+current_iter: 1
+sampling_num: 10
+
+coref_model:
+  # the path of the model from last iteration
+  model_dir: ${fast_coref_dir}/models/joint_best
+  doc_encoder_dir: ${fast_coref_dir}/models/longformer_coreference_joint
+  dataset_name: mimic_active_learning_iter_${current_iter}
+  dataset_dir: ${fast_coref_dir}/coref_resources/data/${coref_model.dataset_name}
+  conf_base_dir: ${fast_coref_dir}/src/conf
+
+unlabeled_pool:
+  base_dir: ${resource_dir}/active_learning/unlabeled_pool_5k
+
+brat_config:
+  base_dir: ${resource_dir}/brat_config
+
+reuse_conll:
+  test_file: ${resource_dir}/active_learning/conll/test.conll
+  dev_file: ${resource_dir}/active_learning/conll/dev.conll
+
+# Use local path or huggingface model name
+tokenizer: /home/yuxiangliao/PhD/workspace/git_clone_repos/fast-coref/models/longformer_coreference_joint
+
+output:
+  base_dir: ${mimic_cxr_output_dir}/active_learning/iter_${current_iter}
+  temp:
+    base_dir: ${output.base_dir}/temp
+    # After model inference, the model outputs will be converted into csv files, and will be used for
+    # creating brat ann files for annotation (i.e. semi-automatic annotation approach)
+    model_inference_csv_dir: ${output.temp.base_dir}/model_inference_csv
+    manual_annotation_csv_dir: ${output.temp.base_dir}/manual_annotation_csv
+    individual_conll_dir: ${output.temp.base_dir}/individual_conll
+  model_training_data:
+    base_dir: ${output.base_dir}/model_training_data
+    conll: ${output.model_training_data.base_dir}/conll
+    longformer: ${output.model_training_data.base_dir}/longformer
+  brat:
+    unfinished_dir: ${output.base_dir}/brat_unfinished
+    finished_dir: ${output.base_dir}/brat_finished
+    rename_server_subdir_to: iter_${current_iter}
+  log:
+    labeled_pool_info_file: ${output.base_dir}/labeled_pool_info.txt
+    config_file: ${output.base_dir}/config.log
+    sampling_file: ${output.base_dir}/sampling.log
+
+
+#####
+# Overwrite legancy configs. No need to change the followings.
+#####
+spacy:
+  output_dir: ${unlabeled_pool.base_dir}
+fastcoref_joint:
+  output_dir: ${output.temp.model_inference_csv_dir}
+  unfinished_records_path: ${output.temp.base_dir}/inference_failed_docs.log
+input_gt:
+  base_dir: ${output.temp.manual_annotation_csv_dir}
+temp_gt:
+  base_dir: ${output.temp.individual_conll_dir}

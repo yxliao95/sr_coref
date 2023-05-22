@@ -20,22 +20,32 @@ pip install transformers
 
 ## Usage
 
+### Create silver_data for fast-coref
+
+Follow the instructions in `generate_silver_trainset.ipynb`.
+
 ### Create BRAT data for annotation
 
-Follow the instructions in ``create_brat_ann_data.ipynb``.
+Follow the instructions in `create_brat_ann_data.ipynb`.
 
 ### Create training data for fast-coref
 
-1. Put the annotated data to ``../output/brat_annotation``.
-2. Follow the instruction in ``resolve_brat_ann_data.ipynb``.
+1. Put the annotated data to `../output/brat_annotation`.
+2. Follow the instruction in `resolve_brat_ann_data.ipynb`.
    - It would output csv files with resolved conll labels
 3. Follow the instruction in `convert_conll&jsonlines.ipynb`
    - It would output a `conll` dir and a `longformer` dir for fast-coref model training
 
 ### Evaluate the annotation results (inter-annotator agreement)
 
-Follow the instructions in ``eval_IAA.ipynb``
+Follow the instructions in `eval_IAA.ipynb`
 
 ### Evaluate our coref methods
 
-Follow the instructions in ``eval.ipynb``. It contain all the evaluation relevances, including the ensemble method and the fine-tuning method.
+Follow the instructions in `eval.ipynb`. It contain all the evaluation relevances, including the ensemble method and the fine-tuning method.
+
+### Create unlabeled pool for active learning
+
+Run `preparing/create_unlabeled_pools.py`
+
+Our MIMIC-CXR dataset (splited by sections) has too many docs that have no coreference clusters. We need to create a subset for the unlabeled pool in which docs are more likely having coreference clusters.

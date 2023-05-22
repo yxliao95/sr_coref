@@ -26,6 +26,8 @@ export PYTHONPATH=/path_to/sr_coref/src:$PYTHONPATH
 
 ### Pre-process the MIMIC-CXR data
 
+Split the whole reports into sections.
+
 ```bash
 cd ../str_rep_coref/src/data_preprocessing
 python preprocess_mimic_cxr.py
@@ -39,7 +41,7 @@ Check the src/data_preprocessing/README.md file for more configuation details.
 
 Check the src/nlp_ensemble/README.md file for details.
 
-### Coreference Resolution
+### Coreference resolution pre-processing
 
 Check the src/coreference_resolution/README.md file for details.
 
