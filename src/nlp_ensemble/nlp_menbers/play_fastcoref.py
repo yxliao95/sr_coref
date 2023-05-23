@@ -12,7 +12,7 @@ from inference.tokenize_doc import tokenize_and_segment_doc
 from model.entity_ranking_model import EntityRankingModel
 from model.utils import action_sequences_to_clusters
 from omegaconf import OmegaConf
-from tqdm import tqdm
+from tqdm.auto import tqdm
 from transformers import AutoModel, AutoTokenizer
 
 from common_utils.common_utils import check_and_create_dirs
@@ -45,6 +45,7 @@ def init_coref_model(config, model_dir=None, doc_encoder_dir=None):
     """
     model_dir = config.fastcoref_joint.model_dir if not model_dir else model_dir
     doc_encoder_dir = config.fastcoref_joint.doc_encoder_dir if not doc_encoder_dir else doc_encoder_dir
+    print(f"Initializing model: {model_dir} and doc_encoder: {doc_encoder_dir}")
 
     # Load model checkpoint
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -253,6 +254,7 @@ def run(
                 logger.error("Section: %s, file: %s, path: %s", section_name, file_entry.name, file_entry.path)
                 logger.error(traceback.format_exc())
                 processed_record_num_per_section[section_name]["Failed"] += 1
+                check_and_create_dirs(os.path.split(config.fastcoref_joint.unfinished_records_path)[0])
                 with open(config.fastcoref_joint.unfinished_records_path, "a", encoding="UTF-8") as f:
                     f.write(f"{file_entry.path}\n")
 

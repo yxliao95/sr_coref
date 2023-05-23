@@ -17,6 +17,8 @@ def get_previous_output_base_dir(config):
 
 def get_previous_model_training_data_base_dir(config):
     previous_output_base_dir = get_previous_output_base_dir(config)
+    if previous_output_base_dir is None:
+        return None
     base_name = os.path.basename(config.output.model_training_data.base_dir)
     previous_model_training_data_base_dir = os.path.join(previous_output_base_dir, base_name)
     return previous_model_training_data_base_dir

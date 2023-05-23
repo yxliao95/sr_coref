@@ -6,6 +6,8 @@ from multiprocessing import Event
 
 import hydra
 import pandas as pd
+
+# fast-coref module
 from data_processing.utils import get_tokenizer
 
 from active_learning.utils import get_previous_model_training_data_base_dir
@@ -114,7 +116,7 @@ def build_aggregrated_conll(config):
 
 
 def build_jsonlines(config):
-    tokenizer = get_tokenizer(config.tokenizer)
+    tokenizer = get_tokenizer(config.coref_model.doc_encoder_dir)
 
     input_dir = config.output.model_training_data.conll
     output_dir = config.output.model_training_data.longformer

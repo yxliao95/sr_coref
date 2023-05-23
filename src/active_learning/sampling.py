@@ -6,11 +6,11 @@ from collections import defaultdict
 
 import hydra
 import numpy as np
-import query_strategies
 import torch
 from omegaconf import OmegaConf
 from torch import Tensor
 
+import active_learning.query_strategies as query_strategies
 import nlp_ensemble.nlp_menbers.play_fastcoref as play_fastcoref
 
 logger = logging.getLogger()
@@ -80,7 +80,7 @@ def sampling_topk_doc_by_MDE(extra_info_dict: dict, sampling_nums: dict, log_dic
         doc_highest_entropy_tensor = torch.cat(doc_highest_entropy_list, dim=0)
         topk_entropy_tensor, topk_indices_tensor = doc_highest_entropy_tensor.topk(sampling_nums[section_name])
 
-        topk_indices_array = topk_indices_tensor.numpy(force=True)
+        topk_indices_array = topk_indices_tensor.detach().cpu().numpy()
         doc_csv_name_array = np.array(doc_csv_name_list)
         sampled_doc_array = doc_csv_name_array[topk_indices_array]
 

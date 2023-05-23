@@ -6,6 +6,8 @@ tests/
 /resources/active_learning
 src/config/remote_server
 
+git-filter-repo.py
+
 logs/
 cim-misspelling/
 fast-coref/

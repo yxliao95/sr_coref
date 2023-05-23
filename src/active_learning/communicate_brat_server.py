@@ -6,7 +6,7 @@ from stat import S_ISDIR
 import hydra
 import paramiko
 import pexpect
-from tqdm import tqdm
+from tqdm.auto import tqdm
 
 logger = logging.getLogger()
 module_path = os.path.dirname(__file__)

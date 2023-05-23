@@ -12,6 +12,7 @@ sampling_num: 10
 coref_model:
   # the path of the model from last iteration
   model_dir: ${fast_coref_dir}/models/joint_best
+  # it is also the tokenizer
   doc_encoder_dir: ${fast_coref_dir}/models/longformer_coreference_joint
   dataset_name: mimic_active_learning_iter_${current_iter}
   dataset_dir: ${fast_coref_dir}/coref_resources/data/${coref_model.dataset_name}
@@ -26,9 +27,6 @@ brat_config:
 reuse_conll:
   test_file: ${resource_dir}/active_learning/conll/test.conll
   dev_file: ${resource_dir}/active_learning/conll/dev.conll
-
-# Use local path or huggingface model name
-tokenizer: /home/yuxiangliao/PhD/workspace/git_clone_repos/fast-coref/models/longformer_coreference_joint
 
 output:
   base_dir: ${mimic_cxr_output_dir}/active_learning/iter_${current_iter}
