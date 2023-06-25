@@ -1,22 +1,16 @@
-# Coreference Resolution
+# Fine-tuning coreference resolution for different styles of clinical narratives
 
-## Usage
-
-### Model prediction
+## Model prediction
 
 Our coref model is based on [fast-coref](https://github.com/shtoshni/fast-coref) with [minor modification](https://github.com/liaoooyx/fast-coref). Please follow their instruction for model prediction.
 
 Our fine-tuned models are available [here](https://drive.google.com/drive/folders/1ZAVJYo9c5bobNeQdQexlOCoGzhF-u02G?usp=sharing)
 
-### The ensemble algorithm
-
-Check the src/nlp_ensemble for details.
-
-### Model training
+## Model training
 
 The training data is currently not available as the MIMIC-CXR data is restricted to sharing with anyone else. We are preparing to share the labelled mimic-cxr coref data on PhysioNet.
 
-#### Python requirements
+### Python requirements
 
 python >= 3.9
 
@@ -25,7 +19,7 @@ conda create --name sr_coref python=3.9 -y
 pip install -r requirements.txt
 ```
 
-#### Python paths
+### Python paths
 
 If the scripts fail to import modules, please make sure the following paths are added to the PYTHONPATH environment variable.
 
@@ -34,7 +28,7 @@ export PYTHONPATH=/path_to/fast-coref/src
 export PYTHONPATH=/path_to/sr_coref/src:$PYTHONPATH
 ```
 
-#### Pre-process the MIMIC-CXR data
+### Pre-process the MIMIC-CXR data
 
 We split the whole reports into sections.
 
@@ -47,18 +41,22 @@ The script output is: /output/mimic_cxr/mimic_cxr_sections.jsonlines
 
 Check the src/data_preprocessing/README.md file for more configuation details.
 
-#### Linguistic pre-processing
+### Linguistic pre-processing
 
 Check the src/nlp_ensemble/README.md file for details.
 
-#### Coreference resolution pre-processing
+### Coreference resolution pre-processing
 
 Check the src/coreference_resolution/README.md file for details.
 
-#### Active Learning
+### Active Learning
 
 Check the src/active_learning/README.md for details.
 
+
+## The ensemble algorithm
+
+Check the src/nlp_ensemble/README.md for details.
 
 ## Cautions
 
