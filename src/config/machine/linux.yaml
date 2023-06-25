@@ -2,6 +2,6 @@
 # /home/yuxiangliao/PhD/workspace/VSCode_workspace
 # /Users/liao/myProjects/VSCode_workspace/structured_reporting
 # /scratch/c.c21051562/workspace
-work_dir: /home/yuxiangliao/PhD/workspace/VSCode_workspace/str_rep_coref
+work_dir: /home/yuxiangliao/PhD/workspace/VSCode_workspace/sr_coref
 fast_coref_dir: /home/yuxiangliao/PhD/workspace/git_clone_repos/fast-coref
 mimic_cxr_dir: /home/yuxiangliao/PhD/mimic-cxr

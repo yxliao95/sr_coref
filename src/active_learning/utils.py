@@ -37,6 +37,8 @@ def get_previous_labeled_pool_dict(config):
             lines = f.readlines()
         sampled_doc_dict = defaultdict(list)
         for line in lines:
+            if line.strip() == "":
+                continue
             section_name, doc_name = line.strip().split("/")
             sampled_doc_dict[section_name].append(doc_name)
         return sampled_doc_dict

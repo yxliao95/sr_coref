@@ -117,8 +117,8 @@ data_split:
 
   test_gt:
     dir_name: test_gt
-    target_doc_dir: ${mimic_cxr_output_dir}/manual_test_set/round1x2
-    source_dir: ${output.base_dir}/individual_conll_ground_truth/round1x2
+    target_doc_dir: ${mimic_cxr_output_dir}/manual_test_set/round1x2_new
+    source_dir: ${output.base_dir}/individual_conll_ground_truth/round1x2_new
     source_file_suffix: .conll
 
   train_manual:

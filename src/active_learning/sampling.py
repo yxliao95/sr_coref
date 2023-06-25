@@ -78,7 +78,8 @@ def sampling_topk_doc_by_MDE(extra_info_dict: dict, sampling_nums: dict, log_dic
             doc_csv_name_list.append(doc_csv_name)
             doc_highest_entropy_list.append(highest_entropy_scaler.unsqueeze(dim=0))
         doc_highest_entropy_tensor = torch.cat(doc_highest_entropy_list, dim=0)
-        topk_entropy_tensor, topk_indices_tensor = doc_highest_entropy_tensor.topk(sampling_nums[section_name])
+        doc_highest_entropy_tensor_nanTo0 = torch.nan_to_num(doc_highest_entropy_tensor)
+        topk_entropy_tensor, topk_indices_tensor = doc_highest_entropy_tensor_nanTo0.topk(sampling_nums[section_name])
 
         topk_indices_array = topk_indices_tensor.detach().cpu().numpy()
         doc_csv_name_array = np.array(doc_csv_name_list)

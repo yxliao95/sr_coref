@@ -39,6 +39,8 @@ def build_individua_conll(config, keep_0_coref_docs=True):
 
     for section_name in ["findings", "impression"]:
         csv_input_dir = os.path.join(csv_input_base_dir, section_name)
+        if not os.path.exists(csv_input_dir):
+            continue
         conll_output_dir = os.path.join(conll_output_base_dir, section_name)
         check_and_create_dirs(conll_output_dir)
 
@@ -102,13 +104,15 @@ def build_aggregrated_conll(config):
     with open(output_conll_file, "a", encoding="UTF-8") as f_out:
         for section_name in ["findings", "impression"]:
             conll_input_dir = os.path.join(conll_input_base_dir, section_name)
+            if not os.path.exists(conll_input_dir):
+                continue
             for doc_name in FILE_CHECKER.filter(os.listdir(conll_input_dir)):
                 input_conll_file = os.path.join(conll_input_dir, doc_name)
                 with open(input_conll_file, "r", encoding="UTF-8") as f_in:
                     f_out.write("".join(f_in.readlines()))
                     f_out.write("\n")
 
-    # Copy the train/test.conll from resources
+    # Copy the dev/test.conll from resources
     dev_conll_file = config.reuse_conll.dev_file
     shutil.copyfile(dev_conll_file, os.path.join(conll_output_dir, "dev.conll"))
     test_conll_file = config.reuse_conll.test_file

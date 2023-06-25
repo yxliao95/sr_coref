@@ -69,7 +69,6 @@ def prepare_brat(config, sampled_doc_dict: dict):
     brat_output_dir = config.output.brat.unfinished_dir
     check_and_remove_dirs(brat_output_dir, True)
 
-    # Choose to use majority_voting or fast_coref_301, and change corresponding column name
     csv_source_base_dir = config.output.temp.model_inference_csv_dir
     token_colName = config.name_style.fastcoref_joint.column_name.token_from_spacy
     sentence_group_colName = config.name_style.fastcoref_joint.column_name.sentence_group
@@ -228,6 +227,8 @@ def resolve_brat(config):
 
     for section_name in ["findings", "impression"]:
         brat_dir = os.path.join(brat_source_dir, section_name)
+        if not os.path.exists(brat_dir):
+            continue
         spacy_dir = os.path.join(unlabeled_pool_dir, section_name)
         for doc_id in [f.rstrip(".txt") for f in FILE_CHECKER.filter(os.listdir(brat_dir)) if ".txt" in f]:
             # brat outputs
@@ -235,7 +236,6 @@ def resolve_brat(config):
                 txt_file_str = "".join(f.readlines())
             with open(os.path.join(brat_dir, doc_id + ".ann"), "r", encoding="UTF-8") as f:
                 ann_file_list = f.readlines()
-
             # The source of the brat txt files.
             df_spacy = pd.read_csv(os.path.join(spacy_dir, f"{doc_id}.csv"), index_col=0, na_filter=False)
             # Sometime a token is whitespace, which would make the split() not work as expecting. Thus we use other symbol
@@ -295,6 +295,7 @@ def resolve_brat(config):
             # Resolve brat files
             mention_list: list[BratMention] = []
             brat_coref_obj = BratCorefGroup()
+            # Create two loop for mention and relation respectively, in case they are not placed in order
             for line in [line.strip() for line in ann_file_list]:
                 line_info_list = line.split("\t")
                 # print(line_info_list)
@@ -305,7 +306,9 @@ def resolve_brat(config):
                     ment_end = line_info_list[1].split(" ")[-1]
                     mention_str = line_info_list[2]
                     mention_list.append(BratMention(mention_id, ment_start, ment_end, mention_str))
-                elif line[0] == "R":
+            for line in [line.strip() for line in ann_file_list]:
+                line_info_list = line.split("\t")
+                if line[0] == "R":
                     # relation
                     relation_id = line_info_list[0]
                     mention_a_id = line_info_list[1].split(" ")[1].split(":")[-1]
