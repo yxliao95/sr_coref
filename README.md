@@ -1,8 +1,8 @@
 # Fine-tuning coreference resolution for different styles of clinical narratives
 
-## Model prediction
+## Model inference
 
-Our coref model is based on [fast-coref](https://github.com/shtoshni/fast-coref) with [minor modification](https://github.com/liaoooyx/fast-coref). Please follow their instruction for model prediction.
+Our coref model is based on [fast-coref](https://github.com/shtoshni/fast-coref) with [minor modification](https://github.com/liaoooyx/fast-coref). Please follow their instruction for model inference.
 
 Our fine-tuned models are available [here](https://drive.google.com/drive/folders/1ZAVJYo9c5bobNeQdQexlOCoGzhF-u02G?usp=sharing)
 
