@@ -76,7 +76,7 @@ If you are using VSCode, add the following configs to get build-in supports:
 {
     "python.analysis.extraPaths": [
         "/path_to/git_clone_repos/fast-coref/src",
-        "/path_to/str_rep_coref/src",
+        "/path_to/sr_coref/src",
     ],
     "terminal.integrated.env.linux": {
         "PYTHONPATH": "${workspaceFolder}/src:/path_to/fast-coref/src"
