@@ -16,7 +16,7 @@ python >= 3.9
 
 ```bash
 conda create --name sr_coref python=3.9 -y
-pip install -r requirements.txt
+conda create --name sr_coref -f requirements.txt
 ```
 
 ### Python paths
@@ -53,14 +53,18 @@ Check the src/coreference_resolution/README.md file for details.
 
 Check the src/active_learning/README.md for details.
 
-
 ## The ensemble algorithm
 
 Check the src/nlp_ensemble/README.md for details.
 
+## Comparative benchmark
+
+See the scr/benchmarking/REANME.md for details.
+
 ## Cautions
 
 The column of CSV files might not follow the same order. When the reports are being processed by CoreNLP with multiple coref annotators, some of the reports may not be successfully processed in the first round. We will re-run the coref annotators on `unfinished records` in the second round. This will lead to a different order of the columns for those second-round-processed reports. For those disorder reports' sid, you can find them from `/output/nlp_ensamble/run.log or corenlp_unfinished_records.log`
+
 
 ## Config
 

@@ -18,6 +18,9 @@ test*.*
 pylintrc
 manually_processed_records.json
 
+*/benchmarking/data
+*/benchmarking/wl-coref
+
 reference-coreference-scorers/
 resources/eval/
 
